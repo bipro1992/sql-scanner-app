@@ -22,7 +22,7 @@ def sqlChangesScanAndReport(event, context):
           if len(data)>0:
               track.append(re.search(os.environ['DB_OBJ_REGEX'],data[-1]).group(2))
           else:
-              raise Exception('TABLE PATTERN MISMATCH')
+              raise Exception('PATTERN MISMATCH')
         else:
           alterSearchCriteria=re.search(os.environ['ALTER_DB_CHANGES_REGEX'], each_line.lower())
           if alterSearchCriteria and (re.search(os.environ['DB_OBJ_REGEX'],alterSearchCriteria.group(7)).group(2) not in track):
