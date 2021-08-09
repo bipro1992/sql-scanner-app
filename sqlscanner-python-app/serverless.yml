@@ -25,11 +25,11 @@ provider:
   runtime: python3.8
   lambdaHashingVersion: 20201221
   region: us-east-1
-  profile: ************
+  profile: serverless-admin
   environment:
-    CREATE_TABLE_REGEX: "(.*?)(create)(.*?)(\\s+)(table|procedure|function)(\\s+)([a-zA-z_\\d*\\.*]+)(.*?)"
-    ALTER_TABLE_REGEX: "(.*?)(alter)(.*?)(\\s+)(table|procedure|function)(\\s+)([a-zA-z_\\d*\\.*]+)(.*?)"
-    TABLE_REGEX: "(.)([a-zA-z_\\d*]+)(.)"
+    CREATE_REGEX: "(.*?)(create)(.*?)(\\s+)(table|procedure|function)(\\s+)([a-zA-z_\\d*\\.*]+)(.*?)"
+    ALTER_REGEX: "(.*?)(alter)(.*?)(\\s+)(table|procedure|function)(\\s+)([a-zA-z_\\d*\\.*]+)(.*?)"
+    OBJ_REGEX: "(.)([a-zA-z_\\d*]+)(.)"
   iamRoleStatements:
     - Effect: "Allow"
       Action:
@@ -74,7 +74,7 @@ provider:
 functions:
   sqlChangesScanAndReport:
     handler: handler.sqlChangesScanAndReport
-    reservedConcurrency : ****
+    reservedConcurrency : 2000
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
