@@ -27,6 +27,5 @@ def sqlChangesScanAndReport(event, context):
           alterSearchCriteria=re.search(os.environ['ALTER_TABLE_REGEX'], each_line.lower())
           if alterSearchCriteria and (re.search(os.environ['TABLE_REGEX'],alterSearchCriteria.group(7)).group(2) not in track):
             fWrite.write(each_line)
-            print(each_line)
       fWrite.close()
       s3.Bucket('sqlscanreport').upload_file(fileNameWithPath, fileName)
