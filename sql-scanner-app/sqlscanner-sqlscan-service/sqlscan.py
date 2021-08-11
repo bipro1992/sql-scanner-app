@@ -11,7 +11,7 @@ def sqlChangesScanAndReport(event, context):
   object_summary_iterator = bucket.objects.all()
   for sqlFile in object_summary_iterator:
     if(sqlFile.key.strip().endswith('.sql')):
-    #Read a text file line by line using splitlines object
+    #Read a SQL file line by line using splitlines object
       fileNameWithPath='/tmp/'+sqlFile.key.replace('.sql','')+'_SCAN_REPORT.txt'
       fileName=sqlFile.key.replace('.sql','')+'_SCAN_REPORT.txt'
       fWrite=open(fileNameWithPath,'w')
